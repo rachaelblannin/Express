@@ -33,4 +33,4 @@ const server = app.listen(1045,() =>{
 })
 
 
-
+module.exports = server;
