@@ -1,12 +1,13 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const { default: mongoose } = require("mongoose");
 const { peopleModel } = require("./db");
 chai.use(chaiHttp);
 
 const server = require("./index");
 
 describe("sponge tests", () => {
-    
+
     let testSponge;
 
     beforeEach(async () => {
@@ -18,13 +19,12 @@ describe("sponge tests", () => {
                 colour: "blue"
             });
             testSponge = JSON.parse(JSON.stringify(testSponge));
-            console.log();        }
-    } catch(err) {
-        console.error(err)
-    }
-})
+            console.log();
+        } catch (err) {
+            console.error(err)
+        }
+    })
 
-describe("sponge tests", () => {
     it("should create a new sponge", (done) => {
         const newPerson = {
             "name": "patrick",
@@ -41,5 +41,7 @@ describe("sponge tests", () => {
         })
 
     })
+
+    // after((done) => mongoose.disconnect(() => done()));
 })
 
