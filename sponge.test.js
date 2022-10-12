@@ -1,8 +1,28 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const { peopleModel } = require("./db");
 chai.use(chaiHttp);
 
 const server = require("./index");
+
+describe("sponge tests", () => {
+    
+    let testSponge;
+
+    beforeEach(async () => {
+        try {
+            await peopleModel.deleteMany({});
+            testSponge = await peopleModel.create({
+                name: "Squidward",
+                species: "squid",
+                colour: "blue"
+            });
+            testSponge = JSON.parse(JSON.stringify(testSponge));
+            console.log();        }
+    } catch(err) {
+        console.error(err)
+    }
+})
 
 describe("sponge tests", () => {
     it("should create a new sponge", (done) => {
@@ -22,3 +42,4 @@ describe("sponge tests", () => {
 
     })
 })
+
